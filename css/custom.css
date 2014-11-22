@@ -3,4 +3,37 @@
 Custom
 
 ----------------------------------------------------- */
-body {font-family: 'Roboto', sans-serif;}
+body {
+	margin: 2em;
+	padding: 10px 0;
+	background: #fff;
+	color: #08504f;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+}
+#page {
+	margin:auto;
+	text-align: left;
+	max-width: 40em;
+}
+#pageIntro, #pageFooter , #pageContent { padding: 0.5em 0 1.5em 0; }
+
+#pageIntro {
+	text-align: center;
+}
+#pageFooter {
+	font-size: 0.8em;
+	border-top: 1px dotted #777;
+}
+a {
+  background: #e9f4f4;
+  color: inherit;
+}
+a:visited {
+  color: #585858;
+}
+a:focus, a:hover{
+  background: #b1e9e9;
+}
+
+h1, h2, h3, h4, h5, h6 { font-weight:bold; }
