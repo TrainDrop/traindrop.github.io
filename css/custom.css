@@ -18,12 +18,13 @@ body {
 }
 #pageIntro, #pageFooter , #pageContent { padding: 0.5em 0 1.5em 0; }
 
-#pageIntro {
+#pageIntro, #footerFinal{
 	text-align: center;
 }
 #pageFooter {
-	font-size: 0.8em;
 	border-top: 1px dotted #777;
+	font-size: 0.8em;
+	color: #585858;
 }
 a {
   background: #e9f4f4;
