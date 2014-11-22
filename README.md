@@ -1,4 +1,4 @@
-![](https://github.com/TrainDrop/blob/master/assets/traindrop-logo.png)
+![](https://raw.githubusercontent.com/TrainDrop/traindrop.github.io/master/assets/traindrop-logo.png)
 
 À propos
 ========
