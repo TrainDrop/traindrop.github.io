@@ -38,3 +38,15 @@ a:focus, a:hover{
 }
 
 h1, h2, h3, h4, h5, h6 { font-weight:bold; }
+
+.spotlight {
+	background-color: #FFD1AA;
+	color: #333;
+	padding: 1em 1.2em;
+	margin-bottom: 2em;
+}
+#pageTOC {
+	margin: 1em 0 1.5em;
+	border-top: 1px dashed #999;
+	border-bottom: 1px dashed #999;
+}
