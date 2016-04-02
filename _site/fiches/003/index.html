@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Fiche #003</title>
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/tinytypo.css">
+  
+  <link rel="stylesheet" href="/css/fiche.css">
+  
+  <link rel="canonical" href="http://traindrop.github.io//fiches/003/">
+  <!-- Code Highlight -->
+  <link rel="stylesheet" href="../../assets/vendor/highlight/github.css">
+  <!-- / Code Highlight -->
+</head>
+
+<body>
+<div id="page">
+	<div class="header">
+    <h1>Construire une grille fluide avec <code>flexbox</code></h1>
+    
+    <p><small><a href="#" id="togglePropositionsDisplay">Afficher/Masquer les propositions de solutions</a></small></p>
+    
+    <p>Principes abordés&nbsp;: <span class="tag">Responsive Web Design</span></p>
+    <p>Prérequis&nbsp;:</p>
+    <ul class="tags">
+        <li>HTML : bases</li>
+        <li>CSS : bases du positionnement</li>
+        
+        
+    </ul>
+</div>
+
+<main>
+<h2>Acte 1</h2>
+
+<p>Nous allons construire ensemble une grille fluide, c'est-à-dire une CSS définissant une collection de classes qui nous permettront d'organiser, au sein d'un certain bloc, le contenu en colonnes et en gouttières. L'idée est de pouvoir très simplement définir que tel contenu occupe ½, ⅓, ⅙… de la largeur disponible, quelle que soit la largeur du <code>viewport</code>.</p>
+<p>Notre grille n'occupera pas nécessairement tout l'espace, mais peut-être qu'une partie du site. Nous allons donc l'embarquer dans un élément de type bloc, un <em>container</em>, dont nous considérerons qu'il est "large à 100%", il sera la base de notre grille. Notez que si cet élément est le seul élément du <code>body</code>, alors tout se passera comme si la grille occupait toute la largeur disponible car, par défaut, cet élément de type bloc occupera véritablement toute la largeur.</p>
+<p>Notre dernière contrainte sera d'utiliser le <strong>module Flexbox</strong>, introduit par CSS3 et <time datetime="2015-01-01T10:50+02:00">aujourd'hui</time> compatible avec une majorité de navigateurs.</p>
+<p>Nous allons partir du code HTML suivant&nbsp;:</p>
+<pre><code class="html hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grille"</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 100% large --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+
+<div class="assets">
+    <blockquote>
+        Mettez en place deux colonnes de contenu. Le contenu principal occupe ⅔ de la largeur disponible, le contenu latéral, ⅓.
+    </blockquote>
+    <pre><code class="html hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grille"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-2-3"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Contenu principal<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-1-3"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Contenu latéral<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+</div>
+<div class="solution">
+    <p>Pour faire en sorte d'afficher les deux zones l'une à côté de l'autre, il faut commencer par définir le <em>container</em> comme un objet <code class="css">flexbox</code> puis configurer ses options <code class="css">flex-direction</code> et <code class="css">flex-wrap</code>.</p>
+    <p>Il faut ensuite définir la largeur des colonnes. Vous utiliserez pour cela la syntaxe <code class="css">flex</code> <sup id="cite-note-ressource1"><a href="#cite-ressource1">[1]</a></sup>&nbsp;:</p>
+    <pre><code class="css hljs"><span class="hljs-tag">flex</span>: &lt;'<span class="hljs-tag">flex-grow</span>'&gt; &lt;'<span class="hljs-tag">flex-shrink</span>'&gt; &lt;'<span class="hljs-tag">flex-basis</span>'&gt; </code></pre>
+    <p>Lisez la documentation et expliquez la valeur à donner à chaque paramètre pour fortement maitriser la largeur d'un contenu par rapport à la largeur de son <em>container</em></p>.
+</div>
+<div class="proposition" style="display: block;">
+    <p>Proposition de solution&nbsp;:</p>
+        <pre><code class="css hljs"><span class="hljs-class">.grille</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> flex</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">flex-direction</span>:<span class="hljs-value"> row</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">flex-wrap</span>:<span class="hljs-value"> wrap</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-class">.col-2-3</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">flex</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">66.66%</span></span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-class">.col-1-3</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">flex</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">33.33%</span></span></span>;
+<span class="hljs-rule">}</span></span></code></pre>
+    <p>En mettant 0 comme valeur pour <code class="css">flex-grow</code> et <code class="css">flex-shrink</code>, on s'assure que l'élément ne s'adaptera pas ni à une largeur plus élevée (pour remplir) ni à une largeur plus faible (pour mieux s'insérer).</p>
+</div>
+
+<h2>Acte 2</h2>
+<p>
+    Si vous remplacez les contenus par du Lorem Ipsum <sup id="cite-note-ressource2"><a href="#cite-ressource2">[2]</a></sup>, par exemple, vous allez vite vous rendre compte d'un problème&nbsp;: le texte d'un élément continue jusqu'au contenu suivant, ce qui n'est pas très agréable à l'oeil. Nous allons donc mettre en place des gouttières de 20px, qui permettront d'aérer le contenu.</p>
+<p>
+</p><div class="assets">
+    <blockquote>
+        Définissez des gouttières de 20px de large entre les contenus. Attention, les gouttières ne sont qu'entre les contenus… ni à gauche, ni à droite de la grille.
+    </blockquote>
+</div>
+<div class="solution">
+    <p>Vous rencontrez des problèmes pour faire rentrer vos contenus en largeur ? C'est normal, c'est à cause du modèle de boîtes par défaut. Pour simplifier la mise en place, appliquez à l'ensemble des éléments la règle <code class="html">box-sizing: border-box;</code> <sup id="cite-note-ressource3"><a href="#cite-ressource3">[3]</a></sup> afin que la largeur définie d'un contenu soit véritablement sa largeur, indépendamment des <code class="html">padding</code> et des <code class="html">border</code> appliqués.</p>
+    <figure>
+        <img src="assets/with-box-model.png" alt="Description visuelle de l'impact de box-sizing: border-box;" width="704" height="504">
+        <figcaption>Avec <code>box-sizing: border-box;</code> les bordures et les paddings sont dessinés à l'intérieur de la largeur de contenu définie. Les marges sont dessinées à l'extérieur. Original par <a href="http://www.adamkaplan.me/grid/">Adam Kaplan</a></figcaption>.
+    </figure>
+</div>
+<div class="proposition" style="display: block;">
+    <p>Proposition de solution pour la mise en place de  <code class="html">box-sizing: border-box;</code> <sup id="cite-note-ressource4"><a href="#cite-ressource4">[4]</a></sup>:</p>
+        <pre><code class="css hljs"><span class="hljs-tag">html</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">-webkit-box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">-moz-box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">box-sizing</span>:<span class="hljs-value"> border-box</span></span>;
+<span class="hljs-rule">}</span></span>
+*, *<span class="hljs-pseudo">:before</span>, *<span class="hljs-pseudo">:after</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">box-sizing</span>:<span class="hljs-value"> inherit</span></span>;
+<span class="hljs-rule">}</span></span>
+        </code></pre>
+    <p>Puis pour la mise en place des gouttières, nous pourrions utiliser <code class="css">last-of-type</code>&nbsp;:</p>
+        <pre><code class="css hljs"><span class="hljs-attr_selector">[class*='col-']</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">padding-right</span>:<span class="hljs-value"> <span class="hljs-number">20px</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-attr_selector">[class*='col-']</span><span class="hljs-pseudo">:last-of-type</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">padding-right</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+<span class="hljs-rule">}</span></span></code></pre>
+    <p>
+        Cependant cela posera problème assez rapidement si nous avons des éléments d'une largeur suffisante pour passer à la ligne... car alors le <code class="css">last-of-type</code> ne concernera pas les éléments situés à droite ou à gauche mais uniquement le dernier élément. Mieux vaut donc jouer avec la marge du <em>container</em> :</p>
+    <pre><code class="css hljs"><span class="hljs-attr_selector">[class*='col-']</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">padding-left</span>:<span class="hljs-value"> <span class="hljs-number">20px</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.grille</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">margin-left</span>:<span class="hljs-value"> -<span class="hljs-number">20px</span></span></span>;
+<span class="hljs-rule">}</span></span></code></pre>
+
+</div>
+
+<h2>Acte 3</h2>
+
+<div class="assets">
+    <blockquote>
+        Nous voudrions pouvoir nous laisser une option sur les gouttières extérieures, sous la forme d'une classe CSS supplémentaire que nous pourons utiliser, ou non, pour activer ces gouttières. Implémentez cette classe <code class="css">.grille-espace</code> en CSS (n'oubliez pas de modifier votre HTML pour l'utiliser).
+    </blockquote>
+    <pre><code class="html hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"grille grille-espace"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-2-3"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Contenu principal<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-1-3"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Contenu latéral<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    </code></pre>
+</div>
+<div class="proposition" style="display: block;">
+    <p>Ajoutons d'abord un <code class="css">padding</code> latéral puis restorons la marge normale du <em>container</em> que nous avons supprimé précédemment&nbsp;:</p>
+        <pre><code class="css hljs"><span class="hljs-class">.grille</span><span class="hljs-class">.grille-espace</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">margin-left</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">padding-right</span>:<span class="hljs-value"> <span class="hljs-number">20px</span></span></span>;
+<span class="hljs-rule">}</span></span>
+        </code></pre>
+</div>
+
+<h2>Interlude</h2>
+<p>
+    Nous avançons bien mais il est parfois difficile de voir où nous en sommes, faute de mise en forme.
+</p>
+<div class="assets">
+    <blockquote>
+        Utilisez le code CSS suivant pour y voir plus clair (adaptez à votre code) :
+    </blockquote>
+    <pre><code class="css hljs"><span class="hljs-tag">body</span><span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#446CB3</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#FFF</span></span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-class">.grille</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">2px</span> dashed <span class="hljs-function">rgba</span>(<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">0.3</span>)</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-attr_selector">[class*='col-']</span> <span class="hljs-tag">p</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-function">rgba</span>(<span class="hljs-number">225</span>,<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">0.1</span>)</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">2px</span> solid <span class="hljs-function">rgba</span>(<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">0.2</span>)</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value">block</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">1rem</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">1rem</span> <span class="hljs-number">0</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">0.9rem</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> <span class="hljs-number">600</span></span></span>;
+<span class="hljs-rule">}</span></span>
+    </code></pre>
+</div>
+
+<h2>Acte 4</h2>
+<p>
+    Notre grille est bien partie, mais il faut désormais ajouter d'autres types de largeurs d'éléments pour rendre notre mise-en-page flexible aux besoins.
+</p>
+<div class="assets">
+    <blockquote>
+        Ajoutez des classes pour mettre en forme des contenu occupant ½, ¼ ou ⅙ de la largeur disponible. Pensez aussi aux contenus occupant ⅔, ¾, ⅚… N'hésitez pas à modifier votre code HTML pour réaliser vos tests.
+    </blockquote>
+</div>
+<div class="solution">
+    <p>Essayez de mettre suffisament de contenu dans votre grille pour avoir au moins un, si c'est plusieurs passages à la ligne. Que se passe-t-il ? Que se passerait-il si la valeur <code class="css">flex-grow</code> n'était pas à zéro ?</p>
+</div>
+<div class="proposition" style="display: block;">
+    <p>Proposition de solution&nbsp;:</p>
+        <pre><code class="css hljs"><span class="hljs-class">.col-1-2</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">flex</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">50%</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.col-1-4</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">flex</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">25%</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.col-1-6</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">flex</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">16</span>,<span class="hljs-number">66%</span></span></span>;
+<span class="hljs-rule">}</span></span></code></pre>
+</div>
+<div class="proposition" style="display: block;">
+    <p>Le nommage séparant les ½, ¼ ou ⅙ n'est en effet pas pertinent, car il existe alors plusieurs manières d'écrire la même chose. Par exemple, "la moitié de la largeur" peut être à la fois un demi, mais également trois sixièmes… C'est pour cette raison que vous trouverez de nombreuses grilles organisées sur le <abbr title="Plus Grand Commun Dénominateur">PGCD</abbr> de 2, 3 et 6&nbsp;: 12.</p>
+</div>
+
+<h2>Acte 5</h2>
+<p>
+    Appel de notre client: le deuxième contenu est en réalité un contenu à mettre en avant, alors que le premier contenu est, au contraire, à pousser en fin de grille…
+</p>
+<div class="assets">
+    <blockquote>
+        Créez des classes CSS permettant la mise en avant ou en retrait d'un contenu.
+    </blockquote>
+</div>
+<div class="solution">
+    <p>
+        La propriété <code class="css">order</code> <sup id="cite-note-ressource5"><a href="#cite-ressource5">[5]</a></sup> est votre amie.
+    </p>
+</div>
+<div class="proposition" style="display: block;">
+    <p>L'utilisation de <code class="css">order</code> est extrêmement simple et n'a pas d'équivalent dans une autre méthode de création de grilles&nbsp;:</p>
+    <pre><code class="hljs css"><span class="hljs-comment">/* Contenu ramené vers l'avant */</span>
+<span class="hljs-class">.une</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">order</span>:<span class="hljs-value"> -<span class="hljs-number">1</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-comment">/* contenu poussé vers la fin */</span>
+<span class="hljs-class">.retrait</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">order</span>:<span class="hljs-value"> <span class="hljs-number">99</span></span></span>;
+<span class="hljs-rule">}</span></span></code></pre>
+    <p><a href="example/" target="_blank">Voir le premier <em>container</em> de la démo</a>.</p>
+</div>
+<h2>Acte 6</h2>
+<p>
+    Après divers essai, le résultat n'est pas jugé très satisfaisant&nbsp;: quand les largeurs sont trop petits, le texte ne rentre plus. Le client voudrait que les contenus aient une largeur minimale tout en faisant en sorte qu'ils passent automatiquement à la ligne si l'espace n'est plus suffisant. En revanche, il faudrait que les contenus exploitent l'ensemble de la largeur qui leur sera alors disponible.
+</p>
+<div class="assets">
+    <blockquote>
+        Changer la façon dont vous définissez les largeurs de vos contenus pour définir, à la place, une largeur de <code class="css">20em</code>. En revanche, utilisez les paramètres de la propriété <code class="css">flex</code> pour préciser que les contenus peuvent "<em>s'aggrandir</em>".
+    </blockquote>
+</div>
+<div class="solution">
+    <p>
+        Notons qu'avec ce genre de modification, nous perdrons notre grille typographique. En revanche, nous gagnerons sur le ressenti utilisateur en terme de RWD sans pour autant avoir besoin de <code class="css">media queries</code>.
+    </p>
+</div>
+<div class="proposition" style="display: block;">
+    <p>La proprité suivante, appliquée sur l'ensemble des contenus, suffit. Elle explique à la fois la largeur minimum mais également la tendance à l'aggrandissement si nécessaire, pour exploiter au mieux la largeur disponible&nbsp;:</p>
+    <pre><code class="hljs css"><span class="hljs-class">.min-col-20</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">flex</span>:<span class="hljs-value"> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">20em</span></span></span>; <span class="hljs-rule">}</span></span></code></pre>
+    <p><a href="example/" target="_blank">Voir le deuxième <em>container</em> de la démo</a>.</p>
+</div>
+</main>
+<footer>
+<h1>Ressources</h1>
+<ol>
+    <li id="cite-ressource1"><a href="#cite-note-ressource1">^</a> <a href="https://developer.mozilla.org/fr/docs/Web/CSS/flex">flex</a>, sur <a href="https://developer.mozilla.org/fr/">MDN</a></li>
+    <li id="cite-ressource2"><a href="#cite-note-ressource2">^</a> Il existe de nombreux générateurs de faux texte en ligne, plus ou moins proches du Lorem Ipsum. Par exemple&nbsp;: <a href="http://loripsum.net/">LORIPSUM.NET</a></li>
+    <li id="cite-ressource3"><a href="#cite-note-ressource3">^</a> <a href="https://developer.mozilla.org/fr/docs/Web/CSS/box-sizing">box-sizing</a>, sur <a href="https://developer.mozilla.org/fr/">MDN</a></li>
+    <li id="cite-ressource4"><a href="#cite-note-ressource4">^</a> Sur la base de la bonne pratique recommandée par <a href="http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/">Chris Coyier</a></li>
+    <li id="cite-ressource5"><a href="#cite-note-ressource5">^</a> <a href="https://developer.mozilla.org/fr/docs/Web/CSS/order">order</a>, sur <a href="https://developer.mozilla.org/fr/">MDN</a></li>
+</ol>
+</footer>
+
+
+<!-- End of page scripts -->
+<script src="/assets/js/fiche.js"></script>
+<script src="/assets/vendor/highlight/highlight.pack.js"></script>
+<script>if(hljs){
+    hljs.initHighlightingOnLoad();
+}</script>
+<!-- / End of page scripts -->
+
+</div><!-- /page -->
+</body>
+</html>

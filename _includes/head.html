@@ -1,0 +1,19 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% if page.layout == "post" and page.slug %}Fiche #{{ page.slug }}{% else %}{{ page.title }}{% endif %}</title>
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{ "/css/normalize.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/css/tinytypo.css" | prepend: site.baseurl }}">
+  {% if page.layout == "post" %}
+  <link rel="stylesheet" href="{{ "/css/fiche.css" | prepend: site.baseurl }}">
+  {% else %}
+  <link rel="stylesheet" href="{{ "/css/custom.css" | prepend: site.baseurl }}">
+  {% endif %}
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <!-- Code Highlight -->
+  <link rel="stylesheet" href="../../assets/vendor/highlight/github.css">
+  <!-- / Code Highlight -->
+</head>

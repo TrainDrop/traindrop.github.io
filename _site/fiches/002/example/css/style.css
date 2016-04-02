@@ -1,0 +1,101 @@
+@charset "UTF-8";
+/* Gestion du modèle de boite */
+/* Bonnes pratiques : http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Taille des gouttières */
+/* Règles pour la mise en forme */
+body {
+  background-color: #446CB3;
+  color: #FFF;
+}
+body .grille {
+  border: 2px dashed white;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+body [class*='col-'] figure,
+body [class*='col-'] p {
+  background: rgba(225, 255, 255, 0.1);
+  border: 2px solid white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: block;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.grille {
+  /* Sur 12 colonnes */
+  /* Sur 3 colonnes */
+}
+.grille [class*='col-'] {
+  float: left;
+}
+.grille [class*='col-'].oppose {
+  float: right;
+}
+.grille .col-1-12 {
+  width: 8.33333%;
+}
+.grille .col-2-12 {
+  width: 16.66667%;
+}
+.grille .col-3-12 {
+  width: 25%;
+}
+.grille .col-4-12 {
+  width: 33.33333%;
+}
+.grille .col-5-12 {
+  width: 41.66667%;
+}
+.grille .col-6-12 {
+  width: 50%;
+}
+.grille .col-7-12 {
+  width: 58.33333%;
+}
+.grille .col-8-12 {
+  width: 66.66667%;
+}
+.grille .col-9-12 {
+  width: 75%;
+}
+.grille .col-10-12 {
+  width: 83.33333%;
+}
+.grille .col-11-12 {
+  width: 91.66667%;
+}
+.grille .col-1-3 {
+  width: 33.33333%;
+}
+.grille .col-2-3 {
+  width: 66.66667%;
+}
+.grille [class*='col-'] {
+  padding-right: 20px;
+}
+.grille [class*='col-']:last-of-type {
+  padding-right: 0;
+}
+.grille .ligne:before, .grille .ligne:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+.grille.grille-espace {
+  padding-left: 20px;
+}
+.grille.grille-espace [class*='col-']:last-of-type {
+  padding-right: 20px;
+}

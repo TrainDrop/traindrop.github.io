@@ -1,0 +1,34 @@
+---
+layout: default
+---
+
+<div class="header">
+    <h1>{{ page.title }}</h1>
+    {% unless page.propositions == "hide" %}
+    <p><small><a href="#" id="togglePropositionsDisplay">Afficher/Masquer les propositions de solutions</a></small></p>
+    {% endunless %}
+    <p>Principes abordés&nbsp;: <span class="tag">{{ page.categories | join: '</span>, <span class="tag">' }}</span></p>
+    <p>Prérequis&nbsp;:</p>
+    <ul class="tags">
+        {% if page.prerequis.html %}<li>HTML : {{ page.prerequis.html }}</li>{% endif %}
+        {% if page.prerequis.css %}<li>CSS : {{ page.prerequis.css }}</li>{% endif %}
+        {% if page.prerequis.js %}<li>JS : {{ page.prerequis.js }}</li>{% endif %}
+        {% if page.prerequis.fiches.size > 0 %}
+        <li>{% if page.prerequis.fiches.size > 1 %}Fiches{%else%}Fiche{% endif %} :
+            {% for fiche in page.prerequis.fiches %}
+                <a href="{{ site.baseurl }}/fiches/{{ fiche }}">#{{ fiche }}</a>
+            {% endfor %}
+        </li>
+        {% endif %}
+    </ul>
+</div>
+
+{{ content }}
+
+<!-- End of page scripts -->
+<script src="{{ "/assets/js/fiche.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/assets/vendor/highlight/highlight.pack.js" | prepend: site.baseurl }}"></script>
+<script>if(hljs){
+    hljs.initHighlightingOnLoad();
+}</script>
+<!-- / End of page scripts -->
