@@ -1,0 +1,135 @@
+/* Pour éviter d'avoir un espace entre les images */
+.images {
+  font-size: 0px;
+}
+
+/* Gestion de la mise en page */
+.resp-img {
+  background-align: center top;
+  background-size: 100%;
+  height:800px;
+}
+
+/* Pour éviter d'avoir une image qui se charge
+pendant que Modernizr cherche si webp est supporté */
+.js .resp-img {
+  background-image: none;
+}
+
+.no-js .resp-img,
+.no-webp .resp-img {
+  background-image: url(http://traindrop.github.io/fiches/006/assets/320.jpg);
+}
+
+@media screen and (min-width: 40em) {
+  .resp-img {
+    display: inline-block;
+    width: 33.33%;
+  }
+}
+
+/* Etape 2 : gestion des points de ruptures calculés (les .nowebp sont ajouté à l'étape 3) */
+@media screen and (min-width: 20em) and (max-width: 39.99em) {
+  .no-js .resp-img,
+  .js.no-webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/640.jpg);
+  }
+}
+@media screen and (min-width: 40em) and (max-width: 59.99em) {
+  .no-js .resp-img,
+  .js.no-webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/320.jpg);
+  }
+}
+@media screen and (min-width: 60em) and (max-width: 119.99em) {
+  .no-js .resp-img,
+  .js.no-webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/640.jpg);
+  }
+}
+@media screen and (min-width: 120em) {
+  .no-js .resp-img,
+  .js.no-webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/1024.jpg);
+  }
+}
+@media screen and (max-device-pixel-ratio: 2) and (max-width: 9.99em) {
+  .no-js .resp-img,
+  .js.no-webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/320.jpg);
+  }
+}
+@media screen and (max-device-pixel-ratio: 2) and (min-width: 10em) and (max-width: 19.99em) {
+  .no-js .resp-img,
+  .js.no-webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/640.jpg);
+  }
+}
+@media screen and (max-device-pixel-ratio: 2) and (min-width: 20em) and (max-width: 39.99em) {
+  .no-js .resp-img,
+  .js.no-webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/1024.jpg);
+  }
+}
+@media screen and (max-device-pixel-ratio: 2) and (min-width: 40em) and (max-width: 59.99em) {
+  .no-js .resp-img,
+  .js.no-webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/640.jpg);
+  }
+}
+@media screen and (max-device-pixel-ratio: 2) and (min-width: 60em) {
+  .no-js .resp-img,
+  .js.no-webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/1024.jpg);
+  }
+}
+
+/* Etape 3 : support de webp */
+.webp .resp-img {
+  background-image: url(http://traindrop.github.io/fiches/006/assets/320.webp);
+}
+@media screen and (min-width: 20em) and (max-width: 39.99em) {
+  .webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/640.webp);
+  }
+}
+@media screen and (min-width: 40em) and (max-width: 59.99em) {
+  .webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/320.webp);
+  }
+}
+@media screen and (min-width: 60em) and (max-width: 119.99em) {
+  .webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/640.webp);
+  }
+}
+@media screen and (min-width: 120em) {
+  .webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/1024.webp);
+  }
+}
+@media screen and (max-device-pixel-ratio: 2) and (max-width: 9.99em) {
+  .webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/320.webp);
+  }
+}
+@media screen and (max-device-pixel-ratio: 2) and (min-width: 10em) and (max-width: 19.99em) {
+  .webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/640.webp);
+  }
+}
+@media screen and (max-device-pixel-ratio: 2) and (min-width: 20em) and (max-width: 39.99em) {
+  .webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/1024.webp);
+  }
+}
+@media screen and (max-device-pixel-ratio: 2) and (min-width: 40em) and (max-width: 59.99em) {
+  .webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/640.webp);
+  }
+}
+@media screen and (max-device-pixel-ratio: 2) and (min-width: 60em) {
+  .webp .resp-img {
+    background-image: url(http://traindrop.github.io/fiches/006/assets/1024.webp);
+  }
+}
