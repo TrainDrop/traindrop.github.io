@@ -1,0 +1,10 @@
+<header id="pageIntro">
+  <h1><img src="{{ site.baseurl }}/assets/img/traindrop-logo.png" alt="{{ site.title }}" width="500" height="136" /></h1>
+  <p>Enseigner le code et en particulier le front-end
+  <br />Projet collaboratif&nbsp;: <a href="https://github.com/TrainDrop">{{ site.title }} sur GitHub</a></p>
+  {% if page.slug == 'home' %}
+  <p>Les fiches&nbsp;: <a href="{{ site.baseurl }}/fiches/">index des fiches</a></p>
+  {% else %}
+  <p>Présentation&nbsp;: <a href="{{ site.baseurl }}/">Traindrop</a></p>
+  {% endif %}
+</header><!-- /pageIntro -->

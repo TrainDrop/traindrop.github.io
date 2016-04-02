@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Fiche #002</title>
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,700,700italic,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/tinytypo.css">
+  
+  <link rel="stylesheet" href="/css/fiche.css">
+  
+  <link rel="canonical" href="http://traindrop.github.io//fiches/002/">
+  <!-- Code Highlight -->
+  <link rel="stylesheet" href="../../assets/vendor/highlight/github.css">
+  <!-- / Code Highlight -->
+</head>
+
+<body>
+<div id="page">
+	<div class="header">
+    <h1>Construire une grille fluide avec <code>float</code></h1>
+    
+    <p><small><a href="#" id="togglePropositionsDisplay">Afficher/Masquer les propositions de solutions</a></small></p>
+    
+    <p>Principes abordés&nbsp;: <span class="tag">Responsive Web Design</span></p>
+    <p>Prérequis&nbsp;:</p>
+    <ul class="tags">
+        <li>HTML : bases</li>
+        <li>CSS : bases du positionnement</li>
+        
+        
+    </ul>
+</div>
+
+<main>
+<h2>Acte 1</h2>
+
+<p>Nous allons construire ensemble une grille fluide, c'est-à-dire une CSS définissant une collection de classes qui nous permettront d'organiser, au sein d'un certain bloc, le contenu en colonnes et en gouttières. L'idée est de pouvoir très simplement définir que tel contenu occupe ½, ⅓, ⅙&#8230; de la largeur disponible, quelle que soit la largeur du <code>viewport</code>.</p>
+<p>Notre grille n'occupera pas nécessairement tout l'espace, mais peut-être qu'une partie du site. Nous allons donc l'embarquer dans un élément de type bloc, un <em>container</em>, dont nous considérerons qu'il est "large à 100%", il sera la base de notre grille. Notez que si cet élément est le seul élément du <code>body</code>, alors tout se passera comme si la grille occupait toute la largeur disponible car, par défaut, cet élément de type bloc occupera véritablement toute la largeur.</p>
+<p>Nous allons partir du code HTML suivant&nbsp;:</p>
+<pre><code class="html">&lt;div class=&quot;grille&quot;&gt;
+	&lt;!-- 100% large --&gt;
+&lt;/div&gt;
+</code></pre>
+
+<div class="assets">
+	<blockquote>
+		Mettez en place deux colonnes de contenu. Le contenu principal occupe ⅔ de la largeur disponible, le contenu latéral, ⅓.
+	</blockquote>
+	<pre><code class="html">&lt;div class=&quot;grille&quot;&gt;
+	&lt;div class=&quot;col-2-3&quot;&gt;
+		&lt;p&gt;Contenu principal&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;col-1-3&quot;&gt;
+		&lt;p&gt;Contenu latéral&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="solution">
+	<p>Pour faire en sorte d'afficher les deux zones l'une à côté de l'autre, il faut les faire flotter et leur appliquer des largeurs&#8230;</p>
+	<p>Essayer de distinguer ce qui s'applique véritablement à un élément affichant une certaine classe (par exemple, <code class="css">.col-1-3</code>) de ce qui s'appliquera à l'ensemble des classes de type <code class="css">.col-{quelque chose}</code>. Comment adresser l'ensemble de ces classes avec une seule règle CSS&nbsp;?</p>
+</div>
+<div class="proposition">
+	<p>Proposition de solution&nbsp;:</p>
+		<pre><code class="css">[class*='col-'] {
+	float: left;
+}
+
+.col-2-3 {
+	width: 66.66%;
+}
+
+.col-1-3 {
+	width: 33.33%;
+}
+		</code></pre>
+</div>
+
+<h2>Acte 2</h2>
+<p>
+	Si vous remplacez les contenus par du Lorem Ipsum <sup id="cite-note-ressource1"><a href="#cite-ressource1">[1]</a></sup>, par exemple, vous allez vite vous rendre compte d'un problème&nbsp;: le texte d'un élément continue jusqu'au contenu suivant, ce qui n'est pas très agréable à l'oeil. Nous allons donc mettre en place des gouttières de 20px, qui permettront d'aérer le contenu.</p>
+<p>
+<div class="assets">
+	<blockquote>
+		Définissez des gouttières de 20px de large entre les contenus. Attention, les gouttières ne sont qu'entre les contenus&#8230; ni à gauche, ni à droite de la grille.
+	</blockquote>
+</div>
+<div class="solution">
+	<p>Vous rencontrez des problèmes pour faire rentrer vos contenus en largeur ? C'est normal, c'est à cause du modèle de boîtes par défaut. Pour simplifier la mise en place, appliquez à l'ensemble des éléments la règle <code class="html">box-sizing: border-box;</code> <sup id="cite-note-ressource2"><a href="#cite-ressource2">[2]</a></sup> afin que la largeur définie d'un contenu soit véritablement sa largeur, indépendamment des <code class="html">padding</code> et des <code class="html">border</code> appliqués.</p>
+	<figure>
+		<img src="assets/with-box-model.png" alt="Description visuelle de l'impact de box-sizing: border-box;" width="704" height="504">
+		<figcaption>Avec <code>box-sizing: border-box;</code> les bordures et les paddings sont dessinés à l'intérieur de la largeur de contenu définie. Les marges sont dessinées à l'extérieur. Original par <a href="http://www.adamkaplan.me/grid/">Adam Kaplan</a></figcaption>.
+	</figure>
+</div>
+<div class="proposition">
+	<p>Proposition de solution pour la mise en place de  <code class="html">box-sizing: border-box;</code> <sup id="cite-note-ressource3"><a href="#cite-ressource3">[3]</a></sup>:</p>
+		<pre><code class="css">html {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+		</code></pre>
+	<p>Puis pour la mise en place des gouttières&nbsp;:</p>
+		<pre><code class="css">[class*='col-'] {
+	padding-right: 20px;
+}
+[class*='col-']:last-of-type {
+	padding-right: 0;
+}
+		</code></pre>
+</div>
+
+<h2>Acte 3</h2>
+
+<div class="assets">
+	<blockquote>
+		Nous voudrions pouvoir nous laisser une option sur les gouttières extérieures, sous la forme d'une classe CSS supplémentaire que nous pourons utiliser, ou non, pour activer ces gouttières. Implémentez cette classe <code class="css">.grille-espace</code> en CSS (n'oubliez pas de modifier votre HTML pour l'utiliser).
+	</blockquote>
+	<pre><code class="html">&lt;div class=&quot;grille grille-espace&quot;&gt;
+	&lt;div class=&quot;col-2-3&quot;&gt;
+		&lt;p&gt;Contenu principal&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;col-1-3&quot;&gt;
+		&lt;p&gt;Contenu latéral&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+	</code></pre>
+</div>
+<div class="proposition">
+	<p>Ajoutons d'abord le <code class="css">padding</code> à gauche&nbsp;:</p>
+		<pre><code class="css">.grille-espace {
+	padding-left: 20px;
+}
+		</code></pre>
+	<p>Puis nous restorons éventuellement la gouttière de droite que nous avons supprimé précédemment&nbsp;:</p>
+		<pre><code class="css">.grille-espace > [class*='col-']:last-of-type {
+	padding-right: 20px;
+}
+		</code></pre>
+</div>
+
+<h2>Acte 4</h2>
+
+<div class="assets">
+	<blockquote>
+		Nous voudrions également pouvoir nous laisser une option sur l'alignement, afin de pouvoir caler des contenu sur la droite, par exemple, même si aucun contenu ne le précède à gauche. Implémentez en CSS une classe <code class="css">.oppose</code> (n'oubliez pas de modifier votre HTML pour l'utiliser).
+	</blockquote>
+	<pre><code class="html">&lt;div class=&quot;grille&quot;&gt;
+	&lt;div class=&quot;col-1-3 oppose&quot;&gt;
+		&lt;p&gt;Contenu calé à droite&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+	</code></pre>
+</div>
+<div class="proposition">
+	<p>Proposition de solution&nbsp;:</p>
+		<pre><code class="css">.oppose {
+	float: right;
+}
+		</code></pre>
+</div>
+
+<h2>Acte 5</h2>
+<p>
+	Nous avançons bien mais il est parfois difficile de voir où nous en sommes, faute de mise en forme.
+</p>
+<div class="assets">
+	<blockquote>
+		Utilisez le code CSS suivant pour y voir plus clair (adaptez à votre code) :
+	</blockquote>
+	<pre><code class="css">body{
+	background-color: #446CB3;
+	color: #FFF;
+}
+
+.grille {
+	border: 2px dashed rgba(255,255,255,0.3);
+}
+
+[class*='col-'] p {
+	background: rgba(225,255,255,0.1);
+	border: 2px solid rgba(255,255,255,0.2);
+	display:block;
+	padding: 1rem;
+	margin: 1rem 0;
+	font-size: 0.9rem;
+	font-weight: 600;
+}
+	</code></pre>
+</div>
+<div class="solution">
+	<p>Que se passe-t-il ? Pouvez-vous l'expliquer et comment résoudre ce problème ?</p>
+</div>
+<div class="proposition">
+	<p>Nous allons ajouter une notion à notre code HTML, celle de <i>ligne</i>&nbsp;:</p>
+	<pre><code class="html">&lt;div class=&quot;grille grille-espace&quot;&gt;
+	&lt;div class=&quot;ligne&quot;&gt;
+		&lt;div class=&quot;col-2-3&quot;&gt;
+			&lt;p&gt;Contenu principal&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;col-1-3&quot;&gt;
+			&lt;p&gt;Contenu latéral&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;ligne&quot;&gt;
+		&lt;div class=&quot;col-2-3 oppose&quot;&gt;
+			&lt;p&gt;Contenu latéral&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+	</code></pre>
+	<p>Reste à expliquer aux éléments quel espace considérer. Une solution parmi d'autres est d'ajouter un pseudo élément à la fin de chaque ligne, de type <code>block</code> (par défaut, le type d'un pseudo-élément est <code>inline</code>). Cela va permettre au navigateur de considérer la valeur renseignée comme un bloc : nous aurons donc, avant et après chaque ligne, deux blocs invisibles attachés. Ensuite, sur ces blocs, on peut appliquer un <code>clear: both;</code>, qui dégage ces blocs du flux flottant.</p>
+	<pre><code class="css">.ligne:before,
+.ligne:after {
+	content:" ";
+	display: block;
+	clear: both;
+}
+	</code></pre>
+</div>
+
+<h2>Acte 6</h2>
+<p>
+	Notre grille est bien partie, mais il faut désormais ajouter d'autres types de largeurs d'éléments pour rendre notre mise-en-page flexible aux besoins.
+</p>
+<div class="assets">
+	<blockquote>
+		Ajoutez des classes pour mettre en forme des contenu occupant ½, ¼ ou ⅙ de la largeur disponible. Pensez aussi aux contenus occupant ⅔, ¾, ⅚&#8230; N'hésitez pas à modifier votre code HTML pour réaliser vos tests.
+	</blockquote>
+</div>
+<div class="solution">
+	<p>On essaie souvent d'avoir des systèmes de grilles fluides permettant aux contenus d'occuper des moitiés, des quarts ou des sixièmes de la largeur disponible. Dans ce contexte, notre nommage de classes est-il pertinent, n'entrainera-t-il pas des ambiguïtés&nbsp;? Que pourrait-on proposer de mieux&nbsp;?</p>
+</div>
+<div class="proposition">
+	<p>Proposition de solution&nbsp;:</p>
+		<pre><code class="css">.col-1-2 {
+	width: 50%;
+}
+.col-1-4 {
+	width: 25%;
+}
+.col-1-6 {
+	width: 16,66%;
+}
+		</code></pre>
+</div>
+<div class="proposition">
+	<p>Le nommage séparant les ½, ¼ ou ⅙ n'est en effet pas pertinent, car il existe alors plusieurs manières d'écrire la même chose. Par exemple, "la moitié de la largeur" peut être à la fois un demi, mais également trois sixièmes&#8230; C'est pour cette raison que vous trouverez de nombreuses grilles organisées sur le <abbr title="Plus Grand Commun Dénominateur">PGCD</abbr> de 2, 3 et 6&nbsp;: 12.</p>
+</div>
+
+<h2>Acte 7</h2>
+<p>
+	Notre grille est prête, mais bien que flexible au sens <abbr title="Responsive Web Design">RWD</abbr>, elle ne l'est pas énormément en termes de maintenance&#8230;
+</p>
+<div class="assets">
+	<blockquote>
+		Que se passerait-il demain si nous voulions modifier la largeur de nos gouttières&nbsp;? Proposez une solution pour rendre la maintenance de ce paramètre plus simple. Quels impacts sur le processus de développement&nbsp;?
+	</blockquote>
+</div>
+<div class="solution">
+	<p>
+		Il existe, dans le monde du développement CSS, la notion de pré ou de post-processeurs. Peuvent-ils aider&nbsp;? Comment&nbsp;? Est-ce lourd à mettre en place et que cela change-t-il dans un projet en termes de maintenance et de facilité de lecture&nbsp;?
+	</p>
+</div>
+<div class="proposition">
+	<p>Les pré et post processeur CSS permettent de réaliser des opérations amenant à du CSS (à partir d'un autre langage) ou étendant le CSS après son écriture. Leur utilisation n'est ni bonne, ni mauvaise&nbsp;: elle dépend du contexte. En revanche, elle implique de travailler au sein d'une équipe parfaitement consciente des usages et qui maitrise ces outils. La courbe d'apprentissage, pour un nouvel arrivant, sera plus importante que s'il n'y avait pas ces outils&nbsp;: il faut donc s'assurer qu'en contre-partie, le temps gagné à l'usage est supérieur.</p>
+	<p>Proposition de solution en SCSS (<a href="example/" target="_blank">voir la démo</a>)&nbsp;:</p>
+		<pre><code class="css">/* Gestion du modèle de boite */
+/* Bonnes pratiques : http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+/* Taille des gouttières */
+$gouttiere: 20px;
+
+/* Règles pour la mise en forme */
+body {
+	background-color: #446CB3;
+	color: #FFF;
+
+	.grille {
+		border: 2px dashed rgb(255, 255, 255);
+		border: 2px dashed rgba(255, 255, 255, 0.3);
+	}
+
+	[class*='col-'] p {
+		background: rgba(225, 255, 255, 0.1);
+		border: 2px solid rgb(255, 255, 255);
+		border: 2px solid rgba(255, 255, 255, 0.2);
+		display: block;
+		padding: 1rem;
+		margin: 1rem 0;
+		font-size: 0.9rem;
+		font-weight: 600;
+	}
+}
+
+.grille {
+	[class*='col-'] {
+		float: left;
+
+		&.oppose {
+			float: right;
+		}
+	}
+
+	/* Sur 12 colonnes */
+	@for $i from 1 through 11 {
+		.col-#{$i}-12 {
+			width: (100% / 12) * $i;
+		}
+	}
+
+	/* Sur 3 colonnes */
+	@for $i from 1 through 2 {
+		.col-#{$i}-3 {
+			width: (100% / 3) * $i;
+		}
+	}
+
+	[class*='col-'] {
+		padding-right: $gouttiere;
+	}
+	[class*='col-']:last-of-type {
+		padding-right: 0;
+	}
+
+	.ligne {
+		&:before,
+		&:after {
+			content: " ";
+			display: block;
+			clear: both;
+		}
+	}
+
+	/* Espaces extérieur */
+	&.grille-espace {
+		padding-left: $gouttiere;
+
+		[class*='col-']:last-of-type {
+			padding-right: $gouttiere;
+		}
+	}
+}</code></pre>
+</div>
+
+<h2>Acte 8</h2>
+<p>
+	Nous disposons désormais d'une grille efficace. Mettons-là en condition réelles.
+</p>
+<div class="assets">
+	<blockquote>
+		Voici un schéma présentant les contenus de notre site.
+	</blockquote>
+	<img src="assets/content_grid.png" width="975" height="1270" alt="Exemple de mise en page sur grille à 12 colonnes" />
+</div>
+<div class="solution">
+	<p>
+		Commencez par critiquer la mise-en-forme fournie. Vous semble-t-elle cohérente par rapport à la grille sur laquelle elle se repose ?
+	</p>
+	<p>
+		Utilisez une grille fluide pour mettre en forme votre mise-en-page corrigée.
+	</p>
+</div>
+</main>
+<footer>
+<h1>Ressources</h1>
+<ol>
+	<li id="cite-ressource1"><a href="#cite-note-ressource1">^</a> Il existe de nombreux générateurs de faux texte en ligne, plus ou moins proches du Lorem Ipsum. Par exemple&nbsp;: <a href="http://loripsum.net/">LORIPSUM.NET</a></li>
+	<li id="cite-ressource2"><a href="#cite-note-ressource2">^</a> <a href="https://developer.mozilla.org/fr/docs/Web/CSS/box-sizing">box-sizing</a>, sur <a href="https://developer.mozilla.org/fr/">MDN</a></li>
+	<li id="cite-ressource3"><a href="#cite-note-ressource3">^</a> Sur la base de la bonne pratique recommandée par <a href="http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/">Chris Coyier</a></li>
+</ol>
+</footer>
+
+
+<!-- End of page scripts -->
+<script src="/assets/js/fiche.js"></script>
+<script src="/assets/vendor/highlight/highlight.pack.js"></script>
+<script>if(hljs){
+    hljs.initHighlightingOnLoad();
+}</script>
+<!-- / End of page scripts -->
+
+</div><!-- /page -->
+</body>
+</html>

@@ -1,0 +1,45 @@
+---
+layout: page
+title: Index des fiches
+slug: index-des-fiches
+---
+
+<table>
+    <thead>
+        <tr>
+            <th>N<sup>o</sup></th>
+            <th>Titre</th>
+            <th>Principes et/ou techniques abordés</th>
+            <th>Prérequis</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for post in site.posts reversed %}
+        <tr>
+            <td>{{ post.slug }}</td>
+            <td><a href="{{ post.url | prepend: site.baseurl }}" id="fiche{{ post.slug }}">{{ post.title }}</a></td>
+            <td>
+                <ul class="tags">
+                    {% for category in post.categories %}
+                    <li>{{ category }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <ul class="tags">
+                    {% if post.prerequis.html %}<li>HTML : {{ post.prerequis.html }}</li>{% endif %}
+                    {% if post.prerequis.css %}<li>CSS : {{ post.prerequis.css }}</li>{% endif %}
+                    {% if post.prerequis.js %}<li>JS : {{ post.prerequis.js }}</li>{% endif %}
+                    {% if post.prerequis.fiches.size > 0 %}
+                    <li>{% if post.prerequis.fiches.size > 1 %}Fiches{%else%}Fiche{% endif %} :
+                        {% for fiche in post.prerequis.fiches %}
+                            <a href="#{{ fiche }}">#{{ fiche }}</a>
+                        {% endfor %}
+                    </li>
+                    {% endif %}
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

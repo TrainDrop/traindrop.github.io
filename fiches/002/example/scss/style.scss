@@ -1,0 +1,90 @@
+@import "compass/css3";
+
+/* Gestion du modèle de boite */
+/* Bonnes pratiques : http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* Taille des gouttières */
+$gouttiere: 20px;
+
+/* Règles pour la mise en forme */
+body {
+    background-color: #446CB3;
+    color: #FFF;
+
+    .grille {
+        border: 2px dashed rgb(255, 255, 255);
+        border: 2px dashed rgba(255, 255, 255, 0.3);
+    }
+
+    [class*='col-'] {
+        figure,
+        p {
+            background: rgba(225, 255, 255, 0.1);
+            border: 2px solid rgb(255, 255, 255);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: block;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+    }
+}
+
+.grille {
+    [class*='col-'] {
+        float: left;
+
+        &.oppose {
+            float: right;
+        }
+    }
+
+    /* Sur 12 colonnes */
+    @for $i from 1 through 11 {
+        .col-#{$i}-12 {
+            width: (100% / 12) * $i;
+        }
+    }
+
+    /* Sur 3 colonnes */
+    @for $i from 1 through 2 {
+        .col-#{$i}-3 {
+            width: (100% / 3) * $i;
+        }
+    }
+
+    [class*='col-'] {
+        padding-right: $gouttiere;
+    }
+    [class*='col-']:last-of-type {
+        padding-right: 0;
+    }
+
+    .ligne {
+        &:before,
+        &:after {
+            content: " ";
+            display: block;
+            clear: both;
+        }
+    }
+
+    /* Espaces extérieur */
+    &.grille-espace {
+        padding-left: $gouttiere;
+
+        [class*='col-']:last-of-type {
+            padding-right: $gouttiere;
+        }
+    }
+}
