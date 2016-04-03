@@ -1,0 +1,13 @@
+.images {
+  font-size: 0px;
+}
+
+img {
+  width: 100%;
+}
+
+@media screen and (min-width: 40em) {
+  img {
+    width: 33.33%;
+  }
+}
