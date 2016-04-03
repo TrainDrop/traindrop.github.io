@@ -68,19 +68,19 @@ a {
 	color: #666;
 }
 
-.assets, .solution, .proposition {
+.question, .indice, .proposition {
 	margin-bottom: 1em;
 	padding: 1em;
 	border-left: 4px solid;
 }
 
-.assets {
+.question {
 	color: #31708f;
 	border-left-color: #bce8f1;
 	background-color: #d9edf7;
 }
 
-.solution {
+.indice {
 	color: #8a6d3b;
 	border-left-color: #faebcc;
 	background-color: #fcf8e3;
@@ -93,7 +93,7 @@ a {
 	background-color: #CAFCFC;
 }
 
-.solution *:last-child {
+.indice *:last-child {
 	margin-bottom: 0;
 }
 

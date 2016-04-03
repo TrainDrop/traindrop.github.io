@@ -14,7 +14,7 @@ propositions: hide
 
 <p>Vous êtes à la tête d'un nouveau projet RWD. Il s'agit d'un projet monopage proposant un en-tête d'accueil puis une série d'épisodes ou chapîtres, contenant chacun un titre, du contenu, mais également des informations additionnelles.</p>
 
-<div class="assets">
+<div class="question">
 	<p>Sur les écrans d'une largeur inférieure ou égale à 740 pixels, l'ensemble des éléments ne forme qu'une colonne. On trouve successivement l'en-tête (en violet sur le schéma), puis le contenu principal et enfin les informations additionnelles (en rose).</p>
 
 	<a href="assets/740.png"><img src="assets/740.png" alt="" style="height:300px"/></a>
@@ -29,7 +29,7 @@ propositions: hide
 
 	<blockquote>Réalisez l'intégration HTML de ce site RWD.</blockquote>
 </div>
-<div class="solution">
+<div class="indice">
 	<p>Pour les images, utilisez des <em>placeholder</em>  <sup id="cite-note-ressource1"><a href="#cite-ressource1">[1]</a></sup>. Pour le texte, du texte de substitution <sup id="cite-note-ressource2"><a href="#cite-ressource2">[2]</a></sup> en Arial à 1em.</p>
 	<p>Concernant le processus d'élaboration des CSS, de nombreux auteurs conseillent de démarrer par la largeur mobile. A votre avis, pourquoi ?</p>
 	<p>Enfin, envisagez d'utiliser un pré-processeur (cela pourra vous être utile par la suite), par exemple SASS (SCSS) <sup id="cite-note-ressource3"><a href="#cite-ressource3">[3]</a></sup>.</p>
@@ -40,12 +40,12 @@ propositions: hide
 	Certains visiteurs du site sont myopes et ont tendance à agrandir considérablement la taille de police par défaut. Essayez. Que se passe-t-il ?
 </p>
 <p>
-<div class="assets">
+<div class="question">
 	<blockquote>
 		Reprenez vos CSS et vérifiez qu'elles utilisent des unités relatives (en partant du principe que la taille de police par défaut est de 16px) <sup id="cite-note-ressource4"><a href="#cite-ressource4">[4]</a></sup>.
 	</blockquote>
 </div>
-<div class="solution">
+<div class="indice">
 	Pour toute une populaiton d'intégrateurs, les unités <code>em</code> ne sont pas instinctives. Vous pouvez utiliser une fonction spécifique traduisant les pixels en unités relatives. Dans certains contextes, cela améliorera la maintenance en facilitant la relecture.
 </div>
 
@@ -53,7 +53,7 @@ propositions: hide
 <p>
 	De nombreux visiteurs consultent le site sur mobile, mais se plaignent de lenteurs, principalement liées au chargement des images, tandis que d'autres se plaignent d'images floues.
 </p>
-<div class="assets">
+<div class="question">
 	<blockquote>
 		Reprenez votre code et vérifiez que les images sont incluses de manière à être pertinentes au regard des ratios de pixels des matériels utilisés.
 	</blockquote>
