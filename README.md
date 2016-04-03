@@ -19,7 +19,7 @@ https://github.com/{votre pseudo}/fiches.git
 ```CLIPS
 git checkout master
 ```
-* au sein du dossier ```_new```, ajoutez votre nouvelle fiche dans un dossier reprenant votre pseudo GitHub (et éventuellement, un numéro). Vous pouvez éventuellement copier/coller le dossier ```pseudoGitHub_001``` pour démarrer rapidement avec une mise-en-page type.
+* au sein du dossier ```_posts```, ajoutez votre nouvelle fiche. Vous pouvez éventuellement copier/coller une fiche existante pour avoir un modèle. Deux formats sont possibles : HTML ou Markdown.
 
 Une fois votre fiche écrite, vous pouvez la contribuer en faisant une *Pull Request*. L'équipe de TrainDrop s'occupera de l'intégrer au bon endroit. N'oubliez pas de bien renseigner le titre de votre fiche et les metadonnées "Principes abordés" et "Niveau requis", c'est ce qui servira aux lecteurs à la retrouver dans l'[index](http://traindrop.github.io/fiches/).
 
@@ -30,5 +30,3 @@ Evidemment, si vous avez des idées pour améliorer ce processus de contribution
 Pour aider les développeurs et contributeurs à définir et maintenir des styles de codage cohérents en dépit de leurs différents éditeurs de texte ou IDE, TrainDrop utilise [EditorConfig](http://editorconfig.org/). Le fichier de configuration, situé à la racine du projet, définit quelques règles qui seront automatiquement appliquées par votre outil si vous l'équipez du plugin adapté.
 
 Des plugins existent pour pour de nombreux outils, n'hésitez pas à [télécharger et installer celui ou ceux qu'il vous faut](http://editorconfig.org/#download "Télécharger un plugin EditorConfig").
-
-
